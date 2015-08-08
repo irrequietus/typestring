@@ -1,4 +1,4 @@
-# Strings as C++ types, C++ types as strings
+# Strings as C++ types for use in template parameter lists.
 
 ## What this is all about
 Template metaprogramming is for those who enjoy using a *pure, non-strict,
