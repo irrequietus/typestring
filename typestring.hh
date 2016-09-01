@@ -1,5 +1,5 @@
 /*~
- * Copyright (C) 2015 George Makrydakis <george@irrequietus.eu>
+ * Copyright (C) 2015, 2016 George Makrydakis <george@irrequietus.eu>
  *
  * The 'typestring' header is a single header C++ library for creating types
  * to use as type parameters in template instantiations, repository available
@@ -109,6 +109,25 @@ auto typoke(typestring<X...>, typestring<A>, typestring<Y>...)
 template<char... C>
 auto typeek(typestring<C...>)
   -> decltype(typoke(typestring<C>()...));
+
+template<char... A, char... B, typename... X>
+auto tycat_(typestring<A...>, typestring<B...>, X... x)
+   -> decltype(tycat_(typestring<A..., B...>(), x...));
+
+template<char... X>
+auto tycat_(typestring<X...>)
+   -> typestring<X...>;
+
+/*
+ * Some people actually using this header as is asked me to include
+ * a typestring "cat" utility given that it is easy enough to implement.
+ * I have added this functionality through the template alias below. For
+ * the obvious implementation, nothing more to say. All T... must be
+ * of course, "typestrings".
+ */
+template<typename... T>
+using tycat
+    = decltype(tycat_(T()...));
 
 } /* irqus */
 
