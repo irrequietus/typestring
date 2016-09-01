@@ -54,6 +54,8 @@ using test5
                        , '~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '('
                        , ')', '_', '+', '=','-', '[', ']', '\\', '{', '}', '|'
                        , ':', ';', '\'', ',', '.', '?', '/'>; 
+using test6
+    = irqus::typestring< 'A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3'>;
       
 int main() {
     check<typestring_is("Hello world, how is it going?"),test1>();
@@ -62,5 +64,7 @@ int main() {
     check<typestring_is("floating : 123456789.123456789+e-1234"),test4>();
     check<typestring_is("symbols  : ~`!@#$%^&*()_+=-[]\\{}|:;',.?/"),test5>();
     check<typestring_is(""),irqus::typestring<'\0'>>(); // null!
+    check<irqus::tycat<typestring_is("ABC"),typestring_is("DEF"),typestring_is("1234")>
+         , typestring_is("ABCDEF1234")>();
     return {};
 }
