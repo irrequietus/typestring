@@ -62,9 +62,9 @@ int main() {
     check<typestring_is("floating : 123456789.123456789+e-1234"),test4>();
     check<typestring_is("symbols  : ~`!@#$%^&*()_+=-[]\\{}|:;',.?/"),test5>();
     check<typestring_is(""),irqus::typestring<'\0'>>(); // null!
-    check<irqus::tycat< typestring_is("ABC")
-                      , typestring_is("DEF")
-                      , typestring_is("1234")>
-                      , typestring_is("ABCDEF1234") >();
+    check< irqus::tycat< typestring_is("ABC")
+                       , typestring_is("DEF")
+                       , typestring_is("1234")>
+         , typestring_is("ABCDEF1234") >();
     return {};
 }
