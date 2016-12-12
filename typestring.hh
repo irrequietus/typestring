@@ -15,6 +15,8 @@
 #ifndef IRQUS_TYPESTRING_HH_
 #define IRQUS_TYPESTRING_HH_
 
+#include <cstddef>
+
 namespace irqus {
 
 /*~
@@ -31,14 +33,14 @@ namespace irqus {
 template<char... C>
 struct typestring final {
 private:
-    static constexpr char const   vals[sizeof...(C)+1] = { C...,'\0' };
-    static constexpr unsigned int sval = sizeof...(C);
+    static constexpr char const  vals[sizeof...(C)+1] = { C...,'\0' };
+    static constexpr std::size_t sval = sizeof...(C);
 public:
     
     static constexpr char const * data() noexcept
     { return &vals[0]; }
     
-    static constexpr unsigned int size() noexcept
+    static constexpr std::size_t size() noexcept
     { return sval; };
     
     static constexpr char const * cbegin() noexcept
@@ -85,7 +87,7 @@ constexpr char const typestring<C...>::vals[sizeof...(C)+1];
  *       errors in most, with at times rather hilarious results.
  */
 
-template<int N, int M>
+template<std::size_t N, std::size_t M>
 constexpr char tygrab(char const(&c)[M]) noexcept
 { return c[N < M ? N : M-1]; }
 
