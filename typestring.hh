@@ -87,7 +87,7 @@ constexpr char const typestring<C...>::vals[sizeof...(C)+1];
  *       errors in most, with at times rather hilarious results.
  */
 
-template<int N, int M>
+template<std::size_t N, std::size_t M>
 constexpr char tygrab(char const(&c)[M]) noexcept
 { return c[N < M ? N : M-1]; }
 
