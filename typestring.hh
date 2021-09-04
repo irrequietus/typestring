@@ -101,6 +101,10 @@ auto typoke(typestring<X...>) // as is...
 template<char... X, char... Y>
 auto typoke(typestring<X...>, typestring<'\0'>, typestring<Y>...)
   -> typestring<X...>;
+    
+template<char... Y>
+auto typoke(typestring<'\0'>, typestring<'\0'>, typestring<Y>...)
+    -> typestring<>;
 
 template<char A, char... X, char... Y>
 auto typoke(typestring<X...>, typestring<A>, typestring<Y>...)
@@ -110,6 +114,9 @@ template<char... C>
 auto typeek(typestring<C...>)
   -> decltype(typoke(typestring<C>()...));
 
+auto typeek(typestring<'\0'>)
+  -> typestring<>;
+    
 template<char... A, char... B, typename... X>
 auto tycat_(typestring<A...>, typestring<B...>, X... x)
    -> decltype(tycat_(typestring<A..., B...>(), x...));
